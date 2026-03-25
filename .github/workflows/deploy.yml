@@ -19,8 +19,9 @@ jobs:
         run: flutter pub get
 
       - name: Build Web
-        run: flutter build web --release --base-href "/cashfy-seguros/"
-             cp build/web/index.html build/web/404.html
+        run: |
+          flutter build web --release --base-href "/cashfy-seguros/"
+          cp build/web/index.html build/web/404.html
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
