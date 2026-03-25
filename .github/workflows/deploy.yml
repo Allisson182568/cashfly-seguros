@@ -11,13 +11,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'
           channel: stable
       - name: Instalar dependências
         run: flutter pub get
       - name: Build Web
         run: |
-          flutter build web --release --base-href "/cashfy-seguros/"
+          flutter build web --release --base-href "/cashfly-seguros/"
           touch build/web/.nojekyll
           cp build/web/index.html build/web/404.html
         env:
