@@ -23,6 +23,7 @@ jobs:
           flutter build web --release --base-href "/cashfy-seguros/"
           cp build/web/index.html build/web/404.html
         env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
 
