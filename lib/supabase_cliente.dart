@@ -9,8 +9,11 @@ class SupabaseService {
   SupabaseService._();
 
   // ⚠️ Substitua pelos seus valores do Supabase Dashboard > Settings > API
-  static const String _supabaseUrl = 'https://wfoysxuynbcuxybkqmfz.supabase.co';
-  static const String _supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indmb3lzeHV5bmJjdXh5YmtxbWZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3OTk3NDcsImV4cCI6MjA4ODM3NTc0N30.v28Tj6z6PrnyUk_kFSvvchjzwHmV7ZXcJH903hQTiZg';
+  static const String _supabaseUrl =
+  String.fromEnvironment('SUPABASE_URL');
+  static const String _supabaseAnonKey =
+  String.fromEnvironment('SUPABASE_ANON_KEY');
+
 
   /// Inicializa o Supabase - chamar em main()
   static Future<void> initialize() async {
