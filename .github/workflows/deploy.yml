@@ -20,7 +20,9 @@ jobs:
 
       - name: Build Web
         run: flutter build web --release --base-href "/cashfy-seguros/"
-        # ⚠️ Troque cashfy-seguros pelo nome exato do seu repositório
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
 
       - name: Deploy no GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
