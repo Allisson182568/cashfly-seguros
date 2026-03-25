@@ -4,16 +4,23 @@ on:
   push:
     branches: [main]
 
+# Movemos a variável para o topo para afetar todas as Actions (Checkout, Deploy, etc)
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout do código
+        uses: actions/checkout@v4
 
-      - uses: subosito/flutter-action@v2
+      - name: Configurar Flutter
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.24.0'
           channel: stable
+          cache: true # Ativa cache para ser mais rápido e evitar timeouts
 
       - name: Instalar dependências
         run: flutter pub get
@@ -23,7 +30,7 @@ jobs:
           flutter build web --release --base-href "/cashfy-seguros/"
           cp build/web/index.html build/web/404.html
         env:
-          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+          # Mantemos aqui também para garantir o ambiente do Flutter
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
 
@@ -32,3 +39,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/web
+          # Garante que arquivos como .nojekyll sejam criados para o Flutter rodar liso
+          enable_jekyll: false
