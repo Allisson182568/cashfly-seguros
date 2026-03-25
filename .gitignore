@@ -75,3 +75,10 @@ linux/flutter/ephemeral/
 
 # Secrets
 .env
+# Web específicos (arquivos gerados pelo build)
+web/flutter_bootstrap.js
+web/flutter.js
+web/flutter_service_worker.js
+web/main.dart.js
+web/main.dart.js.map
+web/manifest.json
